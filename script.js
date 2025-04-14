@@ -84,12 +84,12 @@ class Warrior{
         this.power = power;
     }
 
-    attack = function()
+    attack()
     {
-        console.log("El power del guerrero es:", this.power);
+        return this.power;
     }
 
-    defend = function(damage)
+    defend(damage)
     {
         const result = this.life - damage;
         console.log("La vida restante de warrior es:", result);
@@ -97,31 +97,53 @@ class Warrior{
     }
 
 }
-
+console.log(" ---------------- Ejercicio Extra 1 -----------------------");
 console.log(" ---------------- Ejercicio Warrior -----------------------");
 const warrior1 = new Warrior(60,30);
-warrior1.attack();
+console.log("El power del guerrero es:", warrior1.attack());
 warrior1.defend(10);
 
 
 // 2- Maya: extiende de la clase Warrior
 // constructor: Aquí establecemos los valores para el maya, que no hay que olvidar que es un guerrero.
 // drinkColaCao: Suma 10 al poder.
-class Maya extends Warrior()
+class Maya extends Warrior
 {
     drinkColaCao = function()
     {
-        const result = power + 10;
+        const result = this.power + 10;
+        console.log("Sube de poder +10: ", result);
+        
     }
-    
 }
+
 // 3 -Aztec: extiende de la clase Warrior
 // constructor: Aquí establecemos los valores para el azteca, que no hay que olvidar que es un guerrero.
 // drinkNesquik: Suma 10 a la vida.
-
+class Aztec extends Maya{
+    
+    drinkNesquik = function()
+    {
+        const result = this.life + 10;
+        console.log("Sube la vida +10: ", result);
+        
+    }
+}
 
 // Realiza la siguiente cadena de intercambio de golpes.
 // Azteca bebe nesquik
+const azteca1 = new Aztec(90,40);
+azteca1.drinkNesquik();
+
 // Maya bebe Cola Cao
+const maya1 = new Maya(80,50);
+maya1.drinkColaCao();
+
 // Maya ataca a azteca. Azteca defiende.
+const damageToAztec = maya1.attack();
+azteca1.defend(damageToAztec);
+
 // Azteca ataca a maya. Maya defiende.
+const damageToMaya = azteca1.attack();
+maya1.defend(damageToMaya);
+
